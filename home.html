@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <title>Canvas Sandbox</title>
+  <!--[if lt IE 9]><script src="html5.js"></script><![endif]-->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <header>
+
+    <hgroup>
+      <h1>Canvas Sandbox</h1>
+      <h2>An environment to work with new HTML5 technologies.</h2>
+    </hgroup>
+
+    <nav>
+      <ul>
+        <li><a href="#">reload me</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+
+  <canvas id="sb" width="650" height="375">
+  </canvas>
+
+  <div style="background-color: #eee; border: 1px solid black;" id="msg" width="600" height="50">
+	foo
+  </div>
+
+<script language="JavaScript" type="text/javascript">
+  
+  function drawGrid() {
+	var ctx = this.ctx;
+	var color = this.gridColor;
+    for (var x = 0.5; x < 650; x += 10) {
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, 375);
+    }
+
+    for (var y = 0.5; y < 375; y += 10) {
+      ctx.moveTo(0, y);
+      ctx.lineTo(650, y);
+    }
+    ctx.strokeStyle = color;
+    ctx.stroke();
+  }
+
+  function drawAxis() {
+	var ctx = this.ctx;
+	var color = this.axisColor;
+	
+    ctx.beginPath();
+
+    ctx.moveTo(0, 40);
+    ctx.lineTo(240, 40);
+    ctx.moveTo(260, 40);
+    ctx.lineTo(500, 40);
+    ctx.moveTo(495, 35);
+    ctx.lineTo(500, 40);
+    ctx.lineTo(495, 45);
+
+    ctx.moveTo(60, 0);
+    ctx.lineTo(60, 153);
+    ctx.moveTo(60, 173);
+    ctx.lineTo(60, 375);
+    ctx.moveTo(65, 370);
+    ctx.lineTo(60, 375);
+    ctx.lineTo(55, 370);
+
+    ctx.strokeStyle = color;
+    ctx.stroke();
+  }
+
+  function labelAxis() {
+	var ctx = this.ctx;
+    ctx.font = this.font;
+    ctx.fillText('x', 248, 43);
+    ctx.fillText('y', 58, 165);
+  }
+
+  function labelEnds() {
+	var ctx = this.ctx;
+    ctx.textBaseline = 'top';
+    ctx.fillText('( 0 , 0 )', 8, 5);
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('( 500 , 375 )', 492, 370);
+  }
+
+  function Graph(ctx, font, gridColor, axisColor, func2graph) {
+	this.ctx = ctx;
+	this.func2graph = func2graph;
+	this.font = font || 'bold 12px sans-serif';
+	this.gridColor = gridColor || '#eee';
+	this.axisColor = axisColor || '#000';
+	this.drawGrid = drawGrid;
+	this.drawAxis = drawAxis;
+	this.labelAxis = labelAxis;
+	this.labelEnds = labelEnds;
+  }
+
+  var canvas = document.getElementById('sb');
+  var context = canvas.getContext('2d');
+
+  var graph = new Graph(context, 'bold italic 10px sans-serif', 'aquamarine', 'green');
+
+  graph.drawGrid();
+  graph.drawAxis();
+  graph.labelAxis();
+  graph.labelEnds();
+
+  var worker = new Worker('prime.js');
+
+  prime = document.getElementById('msg');
+
+  worker.onmessage = function(event) {
+	  prime.innerHTML = event.data;
+	  if (event.data > 100000) {
+		  worker.terminate();
+      prime.innerHTML = 'Done!!!';
+	  }
+  }
+
+  worker.postMessage('start');
+
+</script>
+
+
+  <footer>
+    <p>&#167;</p>
+    <p>&copy; 2009 <a href="#">lambo</a></p>
+  </footer>
+
+</body>
+</html>
