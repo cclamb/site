@@ -1,5 +1,5 @@
 html {
-	background: white;
+	background: #b7463e;
 	color:black;
 }
 
@@ -55,11 +55,13 @@ h1, h2 {
 }
 
 header {
-	background-color:black;
+	background-color:#788744;
+  border: 2px solid black;
 	display: block;
 	overflow: hidden;
 	color: white;
-	margin:0;
+	margin-top: 4px;
+  margin-bottom: 4px;
 	padding:1.75em 0;
 }
 
@@ -67,7 +69,18 @@ nav a:link{color:white}
 nav a:visited{color:white}
 h1{letter-spacing:1em;text-align:center;margin:0}
 h2{text-align:center;font-size:medium;line-height:2.154}
-article header,section header{background:white;color:black;margin:0;padding:0}
+
+article {
+
+}
+
+article header,section header {
+  background:tan;
+  color:black;
+  margin:0;
+  padding: 2px;
+  //border:0;
+}
 article h1,section h1{letter-spacing:0;text-align:left;margin:1.75em 0}
 #arc th,#arc td{list-style:none;margin:0;padding:0}
 #arc th,.r{text-align:right}
