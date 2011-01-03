@@ -1,14 +1,14 @@
 html {
-	background: #b7463e;
+	background: white;
 	color:black;
-    /* Mozilla: */
-    background: -moz-linear-gradient(top, #b7463e, #000000);
-    /* Chrome, Safari:*/
-    background: -webkit-gradient(linear,
-                left top, left bottom, from(#b7463e), to(#000000));
-    /* MSIE */
-    filter: progid:DXImageTransform.Microsoft.Gradient(
-                StartColorStr='b7463e', EndColorStr='#000000', GradientType=0);
+  /* Mozilla: */
+  //background: -moz-linear-gradient(top, #b7463e, #000000);
+  /* Chrome, Safari:*/
+  //background: -webkit-gradient(linear,
+  //              left top, left bottom, from(#b7463e), to(#000000));
+  /* MSIE */
+  //filter: progid:DXImageTransform.Microsoft.Gradient(
+  //              StartColorStr='b7463e', EndColorStr='#000000', GradientType=0);
   }
 
 
@@ -82,10 +82,10 @@ h1{letter-spacing:1em;text-align:center;margin:0}
 h2{text-align:center;font-size:medium;line-height:2.154}
 
 .article-body {
-  background-color: #b7463e;
+  background-color: white;
   padding: 2px;
   margin: 0;
-  border: 2px solid black;
+  border: 0;
 }
 
 article header,section header {
