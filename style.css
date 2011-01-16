@@ -77,6 +77,12 @@ header {
   width: 100%;
 }
 
+header p {
+  float:left;
+  font-size:small;
+  margin:0 0 0 0;
+}
+
 nav a:link{color:white}
 nav a:visited{color:white}
 h1{letter-spacing:1em;text-align:center;margin:0}
